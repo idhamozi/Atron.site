@@ -1,5 +1,5 @@
 # Final-Project-Web
-Repositori untuk menyelesaikan Final Project
+Repositori untuk menyelesaikan Final Project Pemrograman Web.
 
 ### Collaborators
 1. Guruh Ihda Alfi (17081010038) [Github Profile](https://github.com/guruhalfi)
