@@ -14,7 +14,7 @@ $loginuser = mysqli_query($koneksi,"select * from user where npm='$npm' and pass
 $cekuser = mysqli_num_rows($loginuser);
 
 if($cek > 0){
-
+    $_SESSION['npm'] = $npm;
     echo '<script language="javascript">alert("Anda berhasil Login !"); document.location="dashboard/dashboard_admin.php";</script>';
 
 }
