@@ -58,7 +58,7 @@ session_start();
                 <div class="header3-wrap">
                     <div class="header__logo">
                         <a href="#">
-                            <img src="images/icon/logo-atron.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo-atron.png"/>
                         </a>
                     </div>
                     <div class="header__navbar">
@@ -174,7 +174,7 @@ session_start();
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
                                 <div class="image">
-                                    <img src="images/icon/profil_unknown.webp" alt="Parlika" />
+                                    <img src="../images/<?php echo $data['foto']  ?>"/>
                                 </div>
                                 <div class="content">
                                     <a class="js-acc-btn" href="#"><?php  echo $data['nama']?></a>
@@ -183,7 +183,7 @@ session_start();
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="images/icon/profil_unknown.webp"/>
+                                                <img src="../images/<?php echo $data['foto']  ?>"/>
                                             </a>
                                         </div>
                                         <div class="content">
@@ -222,7 +222,7 @@ session_start();
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo-atron.png"/>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -411,23 +411,23 @@ session_start();
                 <div class="account-wrap">
                     <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
-                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                            <img src="../images/<?php echo $data['foto']  ?>"/>
                         </div>
                         <div class="content">
-                            <a class="js-acc-btn" href="#">john doe</a>
+                            <a class="js-acc-btn" href="#"><?php echo $data['nama'] ?></a>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
                                 <div class="image">
                                     <a href="#">
-                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                        <img src="../images/<?php echo $data['foto']  ?>"/>
                                     </a>
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
-                                        <a href="#">john doe</a>
+                                        <a href="#"><?php echo $data['nama'] ?></a>
                                     </h5>
-                                    <span class="email">johndoe@example.com</span>
+                                    <span class="email"><?php echo $data['emai"l'] ?></span>
                                 </div>
                             </div>
                             <div class="account-dropdown__body">
@@ -445,7 +445,7 @@ session_start();
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">
-                                <a href="#">
+                                <a href="../logout.php">
                                     <i class="zmdi zmdi-power"></i>Logout</a>
                             </div>
                         </div>

@@ -4,7 +4,7 @@ include "koneksi.php";
 session_start();
 
 $npm = $_POST['npm'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 
 // $query1 =  $link->query("select * from register where username='$username' and password='$password' and approve='1'");
 // $query1 = $link->query("select * from registrasi where username='$username' and pass='$password'");

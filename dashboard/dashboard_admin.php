@@ -58,7 +58,7 @@ session_start();
                 <div class="header3-wrap">
                     <div class="header__logo">
                         <a href="#">
-                            <img src="images/icon/logo-atron.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo-atron.png"/>
                         </a>
                     </div>
                     <div class="header__navbar">
@@ -222,7 +222,7 @@ session_start();
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            <img src="images/icon/logo-atron.png"/>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -445,7 +445,7 @@ session_start();
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">
-                                <a href="#">
+                                <a href="../logout.php">
                                     <i class="zmdi zmdi-power"></i>Logout</a>
                             </div>
                         </div>
