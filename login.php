@@ -34,7 +34,7 @@
                         </div>
                         <button class="btn btn-info mt-2" type="submit">Masuk</button>
                       </form>
-                    <p class="mt-3 mb-0"><a class="text-info small" href="#">Lupa Passoword?</a></p><a class="text-info small" href="register.html">Still Don't have Account? Register Now!</a></div>
+                    <p class="mt-3 mb-0"><a class="text-info small" href="#">Lupa Password?</a></p><a class="text-info small" href="register.html">Still Don't have Account? Register Now!</a></div>
             </div>
             <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-image: url(&quot;assets/img/aldain-austria-316143-unsplash.jpg&quot;);background-size: cover;background-position: center center;">
                 <p class="ml-auto small text-dark mb-2"><em>Photo by ATRON Fasilkom</em><br></p>
