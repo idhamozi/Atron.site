@@ -94,6 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
-    <div class="title" style="color: #009900"><?php echo $email; ?></div>
+    
   </body>
 </html>
