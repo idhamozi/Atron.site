@@ -49,10 +49,10 @@ $data = mysqli_fetch_array($query);
 $querytotaluser = mysqli_query($koneksi, "SELECT * FROM user WHERE poin > 0");
 $numuser = mysqli_num_rows($querytotaluser);
 
-$informatika = mysqli_query($koneksi, "SELECT * FROM user WHERE poin > 0 AND npm LIKE '%081%'");
+$informatika = mysqli_query($koneksi, "SELECT * FROM user WHERE poin = 1 AND npm LIKE '%081%'");
 $totalinformatika = mysqli_num_rows($informatika);
 
-$sifo = mysqli_query($koneksi, "SELECT * FROM user WHERE poin > 0 AND npm LIKE '%082%'");
+$sifo = mysqli_query($koneksi, "SELECT * FROM user WHERE poin = 1 AND npm LIKE '%082%'");
 $totalsifo = mysqli_num_rows($sifo);
 
 if ($npm == null){
@@ -329,7 +329,7 @@ if ($npm == null){
                           <div class="col-md-6 col-lg-4">
                             <!-- CHART PERCENT-->
                             <div class="chart-percent-2">
-                              <h3 class="title-3 m-b-30">total user</h3>
+                              <h3 class="title-3 m-b-30">total user aktif</h3>
                               <div class="chart-wrap">
                                 <canvas id="percent-chart2"></canvas>
                                 <div id="chartjs-tooltip">
