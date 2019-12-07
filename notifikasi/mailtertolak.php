@@ -17,6 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $npm = $_GET['user'];
 
+    $emailuser = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm'");
+    $email = mysqli_fetch_array($emailuser);
+
     $querygmail = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%gmail%'");
     $gmail = mysqli_fetch_array($querygmail);
 
@@ -45,12 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // $mail->Host = 'smtp.gmail.com';
 
     if ($gmail['email'] == $querygmail) {
+
       // atur Gmail sebagai server SMTP
       $mail->Host = 'smtp.gmail.com';
+
     } elseif ($yahoo['email'] == $queryyahoo) {
+
       // atur Yahoo sebagai server SMTP
       $mail->Host = 'smtp.mail.yahoo.com';
-    }    
+    }
 
     // atur server SMTP untuk server Gmail
     $mail->Port = 465;

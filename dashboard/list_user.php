@@ -50,6 +50,7 @@ session_start();
               header("location:../index.html");
             }
  ?>
+ 
  <body class="animsition">
      <div class="page-wrapper">
          <!-- HEADER DESKTOP-->

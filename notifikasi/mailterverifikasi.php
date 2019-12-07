@@ -17,6 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $npm = $_GET['user'];
 
+    $emailuser = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm'");
+    $email = mysqli_fetch_array($emailuser);
+
     $querygmail = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%gmail%'");
     $gmail = mysqli_fetch_array($querygmail);
 
