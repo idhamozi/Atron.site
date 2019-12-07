@@ -1,0 +1,57 @@
+/*
+ * @author Codingan
+ * @website http://codingan.com
+ * @facebook https://www.facebook.com/codingan
+ */
+* {
+    margin: 0;
+}
+
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+body {
+    border: 0;
+    font: 14px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color: #555555;
+    background:#FFF;
+}
+a{color: #6D37B0;}
+a:visited, a:active { text-decoration: none; color:#6D37B0; }
+a:hover { color: #8D8D8D; text-decoration: none;}
+#container {
+    min-height:100%;
+    position:relative;
+}
+#body{
+    width: 1004px;
+    margin: 0 auto;
+    max-width: 100%;
+    padding:20px 0 70px 0;
+    height: 100%;
+
+}
+article{
+    width:100%;
+    min-height:400px;
+}
+.mainTitle{ font: 30px "Trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; padding-bottom:20px; text-decoration:underline;}
+footer {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    height: 100px;
+    width: 100%;
+    background:#eee;
+    color:#000;
+}
+.copyright{float:left; padding:40px 0 0 40px; width:50%; height: 60%;}
+.footerlogo{float:right; width:200px; height:47px; margin:10px 10px 0 0; text-align:center;}
+.error{width:100%; margin:2px 0; border:2px solid #F00;padding:2px; color:#000;}
+.title{ font-size:20px; text-align:center; padding:10px;}
+
+#tableshow {border:1px solid #999999; width:100%; text-align:center;}
+#tableshow tr:nth-child(odd) td { background-color:#FDFDFD } /*odd*/
+#tableshow tr:nth-child(even) td { background-color:#F7F7F7 } /* even*/

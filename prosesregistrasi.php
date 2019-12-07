@@ -19,7 +19,7 @@ $loginuser = mysqli_query($koneksi,"select * from user where npm='$npm'");
 $cekuser = mysqli_num_rows($loginuser);
 
 if($cekuser > 0){
-    //
+
     echo '<script language="javascript">alert("Data Sudah Ada !"); document.location="index.html";</script>';
 
 }
