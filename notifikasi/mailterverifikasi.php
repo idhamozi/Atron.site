@@ -16,8 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     require 'phpmailer/PHPMailerAutoload.php';
 
     $npm = $_GET['user'];
-    $queryemail = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm'");
-    $email = mysqli_fetch_array($queryemail);
+
+    $querygmail = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%gmail%'");
+    $gmail = mysqli_fetch_array($querygmail);
+
+    $queryyahoo = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%yahoo%'");
+    $yahoo = mysqli_fetch_array($queryyahoo);
 
     $main_message = __DIR__.'/pesan_terverifikasi.php';
     $message = file_get_contents($main_message);
@@ -37,8 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // menetapkan prefix ke server
     $mail->SMTPSecure = 'ssl';
 
-    // atur Gmail sebagai server SMTP
-    $mail->Host = 'smtp.gmail.com';
+    if ($gmail['email'] == $querygmail) {
+      // atur Gmail sebagai server SMTP
+      $mail->Host = 'smtp.gmail.com';
+    } elseif ($yahoo['email'] == $queryyahoo) {
+      // atur Yahoo sebagai server SMTP
+      $mail->Host = 'smtp.mail.yahoo.com';
+    }
 
     // atur server SMTP untuk server Gmail
     $mail->Port = 465;
@@ -94,6 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
-    
+
   </body>
 </html>
