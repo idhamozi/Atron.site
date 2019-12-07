@@ -13,7 +13,6 @@ $target = "images/".basename($foto);
 if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) {
   	}
   else {
-
   }
 
 $loginuser = mysqli_query($koneksi,"select * from user where npm='$npm'");
