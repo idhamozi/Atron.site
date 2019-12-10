@@ -16,7 +16,10 @@ $target = "image_pembayaran/".basename($foto_pembayaran);
 $tgl_pengajuan = CURDATE();
 
 $select = mysqli_query($koneksi,"select * from suket_kuliah where npm='$npm'");
+$status = mysqli_fetch_array($select);
 $cekuser = mysqli_num_rows($select);
+
+if ($cekuser == 0) {
 
   $sql = "INSERT INTO suket_kuliah (tahunakademik,nama,npm,jurusan,semester,nama_ortu,nip,pangkat,instansi,keperluan,foto_pembayaran,tgl_pengajuan,tgl_selesai) VALUES ('$tahunakademik','$nama','$npm','$jurusan','$semester','$nama_ortu','$nip','$pangkat','$instansi','$keperluan','$foto_pembayaran','$tgl_pengajuan','')";
   $result = mysqli_query($koneksi,$sql);
@@ -25,7 +28,24 @@ $cekuser = mysqli_num_rows($select);
     	}
     else {
     }
+
   echo '<script language="javascript">alert("Pengajuan Berhasil !"); document.location="mahasiswa_aktif.php";</script>';
+} elseif ($cekuser > 0 AND $status['poin'] == 3) {
+
+  $sql = "INSERT INTO suket_kuliah (tahunakademik,nama,npm,jurusan,semester,nama_ortu,nip,pangkat,instansi,keperluan,foto_pembayaran,tgl_pengajuan,tgl_selesai) VALUES ('$tahunakademik','$nama','$npm','$jurusan','$semester','$nama_ortu','$nip','$pangkat','$instansi','$keperluan','$foto_pembayaran','$tgl_pengajuan','')";
+  $result = mysqli_query($koneksi,$sql);
+
+  if (move_uploaded_file($_FILES['foto_pembayaran']['tmp_name'], $target)) {
+    	}
+    else {
+    }
+    
+  echo '<script language="javascript">alert("Pengajuan Berhasil !"); document.location="mahasiswa_aktif.php";</script>';
+} else {
+  echo '<script language="javascript">alert("Sudah ada pengajuan yang sedang di proses !"); document.location="mahasiswa_aktif.php";</script>';
+}
+
+
 
 
 
