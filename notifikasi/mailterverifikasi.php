@@ -5,7 +5,7 @@
  * @facebook https://www.facebook.com/codingan
  */
 
-include ('../koneksi.php');
+// include ('../../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (isset($_GET['user'])) {
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $mail->IsSMTP();
 
     // mengaktifkan debug SMTP (untuk pengujian) atur 0 untuk menonaktifkan mode debugging, 1 untuk menampilkan hasil debug
-    $mail->SMTPDebug = 0;
+    $mail->SMTPDebug = 2;
 
     // mengaktifkan otentikasi SMTP
     $mail->SMTPAuth = true;
@@ -45,14 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $mail->SMTPSecure = 'ssl';
 
     if ($gmail['email'] == $querygmail) {
+
       // atur Gmail sebagai server SMTP
       $mail->Host = 'smtp.gmail.com';
+
     } elseif ($yahoo['email'] == $queryyahoo) {
+
       // atur Yahoo sebagai server SMTP
       $mail->Host = 'smtp.mail.yahoo.com';
     }
 
-    // atur server SMTP untuk server Gmail
+    // atur server SMTP untuk server
     $mail->Port = 465;
 
     // alamat gmail kamu
@@ -106,6 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
-
+    <!-- <?php echo $msg; ?> -->
   </body>
 </html>

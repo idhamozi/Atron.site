@@ -1,5 +1,6 @@
 <?php
 include ('../../koneksi.php');
+include ('../../notifikasi/mailterverifikasi.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -7,13 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $npm = $_GET['user'];
 
     $queryupdate = mysqli_query($koneksi, "UPDATE user SET poin = 1 WHERE npm = '$npm'");
-    if ($queryupdate) { ?>
+    if ($queryupdate) {
 
-        <script type="text/javascript">
-          alert('Akun telah di aktifkan !');
-        </script>
-      <?php
-      header("location:../manajemen_user.php");
+      echo '<script language="javascript">alert("Email Terkirim, Akun telah di aktifkan !"); document.location="manajemen_user.php";</script>';
+
     }
   }
 }

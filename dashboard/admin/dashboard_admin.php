@@ -1,5 +1,5 @@
 <?php
-include ('../koneksi.php');
+include ('../../koneksi.php');
 session_start();
 ?>
 
@@ -18,25 +18,25 @@ session_start();
   <title>Dashboard Admin</title>
 
   <!-- Fontfaces CSS-->
-  <link href="css/font-face.css" rel="stylesheet" media="all">
-  <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-  <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-  <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+  <link href="../css/font-face.css" rel="stylesheet" media="all">
+  <link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+  <link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+  <link href="../vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
   <!-- Bootstrap CSS-->
-  <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+  <link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
   <!-- Vendor CSS-->
-  <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-  <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-  <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-  <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-  <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-  <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-  <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+  <link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+  <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+  <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+  <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+  <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+  <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+  <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
   <!-- Main CSS-->
-  <link href="css/theme.css" rel="stylesheet" media="all">
+  <link href="../css/theme.css" rel="stylesheet" media="all">
 
 </head>
 
@@ -56,7 +56,7 @@ $sifo = mysqli_query($koneksi, "SELECT * FROM user WHERE poin = 1 AND npm LIKE '
 $totalsifo = mysqli_num_rows($sifo);
 
 if ($npm == null){
-  header("location:../index.html");
+  header("location:../../index.html");
 }
 ?>
 
@@ -68,7 +68,7 @@ if ($npm == null){
         <div class="header3-wrap">
           <div class="header__logo">
             <a href="#">
-              <img src="images/icon/logo-atron.png"/>
+              <img src="../images/icon/logo-atron.png"/>
             </a>
           </div>
           <div class="header__navbar">
@@ -92,10 +92,21 @@ if ($npm == null){
                 </a>
               </li>
               <li class="has-sub">
-                <a href="status-pengajuan_admin.php">
-                  <i class="fas fa-upload"></i>
-                  <span class="bot-line"></span>Status Pengajuan
+                <a href="#">
+                  <i class="fas fa-upload"></i>Status Pengajuan
+                  <span class="bot-line"></span>
                 </a>
+                <ul class="header3-sub-list list-unstyled">
+                    <li>
+                        <a href="status_pengajuan_surat_pkl.php">Surat Praktek Kerja Lapangan</a>
+                    </li>
+                    <li>
+                        <a href="status_pengajuan_surat_mahasiswa_aktif.php">Surat Keterangan Mahasiswa Aktif</a>
+                    </li>
+                    <li>
+                        <a href="status_pengajuan_surat_keluar.php">Surat Keluar</a>
+                    </li>
+                </ul>
               </li>
               <li class="has-sub">
                 <a href="#">
@@ -109,7 +120,7 @@ if ($npm == null){
             <div class="account-wrap">
               <div class="account-item account-item--style2 clearfix js-item-menu">
                 <div class="image">
-                  <img src="images/icon/profil_unknown.webp" alt="Parlika" />
+                  <img src="../images/icon/profil_unknown.webp"/>
                 </div>
                 <div class="content">
                   <a class="js-acc-btn" href="#"><?php  echo $data['npm']?></a>
@@ -118,7 +129,7 @@ if ($npm == null){
                   <div class="info clearfix">
                     <div class="image">
                       <a href="#">
-                        <img src="images/icon/profil_unknown.webp"/>
+                        <img src="../images/icon/profil_unknown.webp"/>
                       </a>
                     </div>
                     <div class="content">
@@ -129,7 +140,7 @@ if ($npm == null){
                     </div>
                   </div>
                   <div class="account-dropdown__footer">
-                    <a href="../logout.php">
+                    <a href="../../logout.php">
                       <i class="zmdi zmdi-power"></i>Logout</a>
                     </div>
                   </div>
@@ -147,7 +158,7 @@ if ($npm == null){
           <div class="container-fluid">
             <div class="header-mobile-inner">
               <a class="logo" href="#">
-                <img src="images/icon/logo-atron.png"/>
+                <img src="../images/icon/logo-atron.png"/>
               </a>
               <button class="hamburger hamburger--slider" type="button">
                 <span class="hamburger-box">
@@ -189,7 +200,7 @@ if ($npm == null){
                     <div class="account-wrap">
                       <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
-                          <img src="images/icon/profil_unknown.webp" alt="Parlika" />
+                          <img src="../images/icon/profil_unknown.webp"/>
                         </div>
                         <div class="content">
                           <a class="js-acc-btn" href="#"><?php  echo $data['npm']?></a>
@@ -198,7 +209,7 @@ if ($npm == null){
                           <div class="info clearfix">
                             <div class="image">
                               <a href="#">
-                                <img src="images/icon/profil_unknown.webp"/>
+                                <img src="../images/icon/profil_unknown.webp"/>
                               </a>
                             </div>
                             <div class="content">
@@ -209,7 +220,7 @@ if ($npm == null){
                             </div>
                           </div>
                           <div class="account-dropdown__footer">
-                            <a href="../logout.php">
+                            <a href="../../logout.php">
                               <i class="zmdi zmdi-power"></i>Logout</a>
                             </div>
                           </div>
@@ -355,15 +366,15 @@ if ($npm == null){
 
                     <!-- COPYRIGHT-->
                     <section class="p-t-60 p-b-20">
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="copyright">
-                              <p>Copyright © 2018 M-God. All rights reserved.</p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="copyright">
+                                        <p>Copyright © 2019 Jaher Team. All rights reserved.</p>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
                     </section>
                     <!-- END COPYRIGHT-->
                   </div>
@@ -371,32 +382,33 @@ if ($npm == null){
                 </div>
 
                 <!-- Jquery JS-->
-                <script src="vendor/jquery-3.2.1.min.js"></script>
+                <script src="../vendor/jquery-3.2.1.min.js"></script>
                 <!-- Bootstrap JS-->
-                <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-                <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+                <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+                <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
                 <!-- Vendor JS       -->
-                <script src="vendor/slick/slick.min.js">
+                <script src="../vendor/slick/slick.min.js">
                 </script>
-                <script src="vendor/wow/wow.min.js"></script>
-                <script src="vendor/animsition/animsition.min.js"></script>
-                <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+                <script src="../vendor/wow/wow.min.js"></script>
+                <script src="../vendor/animsition/animsition.min.js"></script>
+                <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
                 </script>
-                <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-                <script src="vendor/counter-up/jquery.counterup.min.js">
+                <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+                <script src="../vendor/counter-up/jquery.counterup.min.js">
                 </script>
-                <script src="vendor/circle-progress/circle-progress.min.js"></script>
-                <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-                <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-                <script src="vendor/select2/select2.min.js">
+                <script src="../vendor/circle-progress/circle-progress.min.js"></script>
+                <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+                <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+                <script src="../vendor/select2/select2.min.js">
                 </script>
 
                 <script type="text/javascript">
                   var informatika = <?= $totalinformatika ?>;
                   var sifo = <?= $totalsifo ?>;
                 </script>
+
                 <!-- Main JS-->
-                <script type="text/javascript" src="js/main.js"></script>
+                <script type="text/javascript" src="../js/main.js"></script>
 
               </body>
 

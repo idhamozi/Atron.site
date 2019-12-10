@@ -5,7 +5,7 @@
  * @facebook https://www.facebook.com/codingan
  */
 
-include ('../koneksi.php');
+// include ('../../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (isset($_GET['user'])) {
@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $emailuser = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm'");
     $email = mysqli_fetch_array($emailuser);
 
-    $querygmail = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%gmail%'");
-    $gmail = mysqli_fetch_array($querygmail);
-
-    $queryyahoo = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%yahoo%'");
-    $yahoo = mysqli_fetch_array($queryyahoo);
+    // $querygmail = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%gmail%'");
+    // $gmail = mysqli_fetch_array($querygmail);
+    //
+    // $queryyahoo = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%yahoo%'");
+    // $yahoo = mysqli_fetch_array($queryyahoo);
 
     $main_message = __DIR__.'/pesan_tertolak.php';
     $message = file_get_contents($main_message);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $mail->IsSMTP();
 
     // mengaktifkan debug SMTP (untuk pengujian) atur 0 untuk menonaktifkan mode debugging, 1 untuk menampilkan hasil debug
-    $mail->SMTPDebug = 0;
+    $mail->SMTPDebug = 2;
 
     // mengaktifkan otentikasi SMTP
     $mail->SMTPAuth = true;
@@ -44,21 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // menetapkan prefix ke server
     $mail->SMTPSecure = 'ssl';
 
-    // // atur Gmail sebagai server SMTP
-    // $mail->Host = 'smtp.gmail.com';
+    // atur Gmail sebagai server SMTP
+    $mail->Host = 'smtp.gmail.com';
 
-    if ($gmail['email'] == $querygmail) {
+    // if ($gmail['email'] == $gmail) {
+    //
+    //   // atur Gmail sebagai server SMTP
+    //   $mail->Host = 'smtp.gmail.com';
+    //
+    // } elseif ($yahoo['email'] == $yahoo) {
+    //
+    //   // atur Yahoo sebagai server SMTP
+    //   $mail->Host = 'smtp.mail.yahoo.com';
+    // }
 
-      // atur Gmail sebagai server SMTP
-      $mail->Host = 'smtp.gmail.com';
-
-    } elseif ($yahoo['email'] == $queryyahoo) {
-
-      // atur Yahoo sebagai server SMTP
-      $mail->Host = 'smtp.mail.yahoo.com';
-    }
-
-    // atur server SMTP untuk server Gmail
+    // atur server SMTP untuk server
     $mail->Port = 465;
 
     // alamat gmail kamu
@@ -112,6 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
-
+    <!-- <?php echo $msg; ?> -->
   </body>
 </html>

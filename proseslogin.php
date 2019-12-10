@@ -19,14 +19,14 @@
 
   if($cek > 0){
       $_SESSION['npm'] = $npm;
-      echo '<script language="javascript">alert("Anda berhasil Login !"); document.location="dashboard/dashboard_admin.php";</script>';
+      echo '<script language="javascript">alert("Anda berhasil Login !"); document.location="dashboard/admin/dashboard_admin.php";</script>';
 
   }
   elseif ($cekuser > 0) {
     if ($poin == 1) {
 
         $_SESSION['npm'] = $npm;
-        echo '<script language="javascript">alert("Anda berhasil Login !"); document.location="dashboard/dashboard_user.php";</script>';
+        echo '<script language="javascript">alert("Anda berhasil Login !"); document.location="dashboard/user/dashboard_user.php";</script>';
     } elseif ($poin == 2) {
       echo '<script language="javascript">alert("Akun Anda telah di Nonaktifkan !"); document.location="login.php";</script>';
     } else {

@@ -1,6 +1,6 @@
 <?php
-include ('../koneksi.php');
-include ('../notifikasi/mailtertolak.php');
+include ('../../koneksi.php');
+include ('../../notifikasi/mailtertolak.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
