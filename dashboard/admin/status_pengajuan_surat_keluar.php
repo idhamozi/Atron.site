@@ -1,6 +1,7 @@
 <?php
 include ('../../koneksi.php');
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +45,7 @@ session_start();
             $npm = $_SESSION['npm'];
             $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE npm = '$npm'");
             $data = mysqli_fetch_array($query);
-            $queryuser = mysqli_query($koneksi,"SELECT * FROM user ");
-            $queryuser1 = mysqli_query($koneksi,"SELECT * FROM user ");
+            $querysurat_keluar = mysqli_query($koneksi, "SELECT * FROM surat_keluar ");
 
 
             if ($npm == null){
@@ -84,10 +84,21 @@ session_start();
                                  </a>
                              </li>
                              <li class="has-sub">
-                                 <a href="status-pengajuan_admin.php">
-                                     <i class="fas fa-upload"></i>
-                                     <span class="bot-line"></span>Status Pengajuan
-                                 </a>
+                               <a href="#">
+                                 <i class="fas fa-upload"></i>Status Pengajuan
+                                 <span class="bot-line"></span>
+                               </a>
+                               <ul class="header3-sub-list list-unstyled">
+                                   <li>
+                                       <a href="status_pengajuan_surat_pkl.php">Surat Praktek Kerja Lapangan</a>
+                                   </li>
+                                   <li>
+                                       <a href="status_pengajuan_surat_mahasiswa_aktif.php">Surat Keterangan Mahasiswa Aktif</a>
+                                   </li>
+                                   <li>
+                                       <a href="status_pengajuan_surat_keluar.php">Surat Keluar</a>
+                                   </li>
+                               </ul>
                              </li>
                              <li class="has-sub">
                                  <a href="#">
@@ -233,70 +244,49 @@ session_start();
              <div class="col-lg-12">
                <div class="col-md-12">
                    <h2 class="title-3 mt-3">
-                  Status Pengajuan Surat Keterangan Mahasiswa Aktif
+                  Status Pengajuan Surat Keluar
                    </h2>
                </div>
                  <div class="table-responsive table--no-card m-b-30">
                    <table class="table table-borderless table-striped table-earning">
                        <thead>
                            <tr>
+                           <th class="text-center">TAHUN AKADEMIK</th>
                              <th class="text-center">PERUSAHAAN/INSTANSI</th>
                              <th class="text-center">ALAMAT PERUSAHAAN</th>
-                             <th class="text-center">NO. TELP</th>
+                             <th class="text-center">NO. INSTANSI</th>
                              <th class="text-center">BAGIAN YANG DITUJU</th>
                              <th class="text-center">NAMA</th>
                              <th class="text-center">NPM</th>
+                             <th class="text-center">NAMA TEMAN</th>
+                             <th class="text-center">NPM TEMAN</th>
+                             <th class="text-center">TGL PENGAJUAN</th>
+                             <th class="text-center">TGL SELESAI</th>
                               <th class="text-center">STATUS</th>
                            </tr>
                        </thead>
                        <tbody>
-                          <?php while ($datauser = mysqli_fetch_assoc($queryuser)) { ?>
+                          <?php while ($surat_keluar = mysqli_fetch_assoc($querysurat_keluar)) { ?>
                             <tr>
-                            <?php if ($datauser['poin'] == 1) { ?>
-                              <td class="text-center"><?php echo $datauser["instansi"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["alamat_ins"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["no"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["divisi_tujuan"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["nama"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["npm"]; ?></td>
+                            <td class="text-center"><?php echo $surat_keluar["tahunakademik"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["instansi"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["alamat_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["no_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["divisi_tujuan"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["nama"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["npm"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["nama_teman"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["npm_teman"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["tgl_pengajuan"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["tgl_selesai"]; ?></td>
                               <td class="text-center">
-                                <button type="button" class="btn btn-success btn-sm">Diterima</button>
-                                <a href="<?php echo "user/nonaktifuser.php?user=".$datauser['npm']; ?>" type="button" class="btn btn-outline-danger btn-sm">Nonaktif</a>
-                              </td>
-                            <?php } elseif ($datauser['poin'] == 2) { ?>
-                              <td class="text-center"><?php echo $datauser["instansi"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["alamat_ins"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["no"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["divisi_tujuan"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["nama"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["npm"]; ?></td>
-                                   <td class="text-center">
-                                     <a href="<?php echo "user/aktifuser.php?user=".$datauser['npm']; ?>" type="button" class="btn btn-outline-success btn-sm">Aktif</a>
-                                     <button type="button" class="btn btn-danger btn-sm">Proses</button>
-                                   </td>
-                                 <?php } elseif ($datauser['poin'] == 3) { ?>
-                                   <td class="text-center"><?php echo $datauser["instansi"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["alamat_ins"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["no"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["divisi_tujuan"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["nama"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["npm"]; ?></td>
-                                        <td class="text-center">
-                                          <a href="<?php echo "user/aktifuser.php?user=".$datauser['npm']; ?>" type="button" class="btn btn-outline-success btn-sm">Aktif</a>
-                                          <button type="button" class="btn btn-danger btn-sm">Ditolak</button>
-                                        </td>
-                                      <?php } elseif ($datauser['poin'] == 4) { ?>
-                                        <td class="text-center"><?php echo $datauser["instansi"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["alamat_ins"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["no"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["divisi_tujuan"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["nama"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["npm"]; ?></td>
-                                             <td class="text-center">
-                                               <a href="<?php echo "user/aktifuser.php?user=".$datauser['npm']; ?>" type="button" class="btn btn-outline-success btn-sm">Aktif</a>
-                                               <button type="button" class="btn btn-danger btn-sm">Selesai</button>
-                                             </td>
-                                           <?php } ?>
+                              <select>
+                                <option name="poin" value="0" selected>Diterima</option>
+                                <option name="poin" value="1">Dalam Proses</option>
+                                <option name="poin" value="2">Proses Dekan/Wadek</option>
+                                <option name="poin" value="3" >Siap Diambil</option>
+                                <option name="poin" value="4" >Ditolak</option>
+                                </select>
                            </tr>
                          <?php } ?>
                        </tbody>

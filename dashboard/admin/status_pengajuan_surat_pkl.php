@@ -44,8 +44,7 @@ session_start();
             $npm = $_SESSION['npm'];
             $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE npm = '$npm'");
             $data = mysqli_fetch_array($query);
-            $queryuser = mysqli_query($koneksi,"SELECT * FROM user ");
-            $queryuser1 = mysqli_query($koneksi,"SELECT * FROM user ");
+            $querysurat_pkl = mysqli_query($koneksi, "SELECT * FROM surat_pkl ");
 
 
             if ($npm == null){
@@ -60,7 +59,7 @@ session_start();
                  <div class="header3-wrap">
                      <div class="header__logo">
                          <a href="dashboard_admin.php">
-                             <img src="images/icon/logo-atron.png"/>
+                             <img src="../images/icon/logo-atron.png"/>
                          </a>
                      </div>
                      <div class="header__navbar">
@@ -84,10 +83,21 @@ session_start();
                                  </a>
                              </li>
                              <li class="has-sub">
-                                 <a href="status-pengajuan_admin.php">
-                                     <i class="fas fa-upload"></i>
-                                     <span class="bot-line"></span>Status Pengajuan
-                                 </a>
+                               <a href="#">
+                                 <i class="fas fa-upload"></i>Status Pengajuan
+                                 <span class="bot-line"></span>
+                               </a>
+                               <ul class="header3-sub-list list-unstyled">
+                                   <li>
+                                       <a href="status_pengajuan_surat_pkl.php">Surat Praktek Kerja Lapangan</a>
+                                   </li>
+                                   <li>
+                                       <a href="status_pengajuan_surat_mahasiswa_aktif.php">Surat Keterangan Mahasiswa Aktif</a>
+                                   </li>
+                                   <li>
+                                       <a href="status_pengajuan_surat_keluar.php">Surat Keluar</a>
+                                   </li>
+                               </ul>
                              </li>
                              <li class="has-sub">
                                  <a href="#">
@@ -101,7 +111,7 @@ session_start();
                          <div class="account-wrap">
                              <div class="account-item account-item--style2 clearfix js-item-menu">
                                  <div class="image">
-                                     <img src="images/icon/profil_unknown.webp" alt="Parlika" />
+                                     <img src="../images/icon/profil_unknown.webp" alt="Parlika" />
                                  </div>
                                  <div class="content">
                                      <a class="js-acc-btn" href="#"><?php  echo $data['npm']?></a>
@@ -110,7 +120,7 @@ session_start();
                                      <div class="info clearfix">
                                          <div class="image">
                                              <a href="#">
-                                                 <img src="images/icon/profil_unknown.webp"/>
+                                                 <img src="../images/icon/profil_unknown.webp"/>
                                              </a>
                                          </div>
                                          <div class="content">
@@ -139,7 +149,7 @@ session_start();
                  <div class="container-fluid">
                      <div class="header-mobile-inner">
                          <a class="logo" href="dashboard_admin.php">
-                             <img src="images/icon/logo-atron.png"/>
+                             <img src="../images/icon/logo-atron.png"/>
                          </a>
                          <button class="hamburger hamburger--slider" type="button">
                              <span class="hamburger-box">
@@ -181,7 +191,7 @@ session_start();
                <div class="account-wrap">
                    <div class="account-item account-item--style2 clearfix js-item-menu">
                        <div class="image">
-                           <img src="images/icon/profil_unknown.webp" alt="Parlika" />
+                           <img src="../images/icon/profil_unknown.webp" alt="Parlika" />
                        </div>
                        <div class="content">
                            <a class="js-acc-btn" href="#"><?php  echo $data['npm']?></a>
@@ -190,7 +200,7 @@ session_start();
                            <div class="info clearfix">
                                <div class="image">
                                    <a href="#">
-                                       <img src="images/icon/profil_unknown.webp"/>
+                                       <img src="../images/icon/profil_unknown.webp"/>
                                    </a>
                                </div>
                                <div class="content">
@@ -219,7 +229,7 @@ session_start();
                      <div class="row">
                          <div class="col-md-12">
                              <h1 class="title-4 mt-4">
-                               Status Pengajuan Surat
+                               Status Pengajuan Surat PKL
                              </h1>
                              <hr class="line-seprate">
                          </div>
@@ -233,80 +243,54 @@ session_start();
              <div class="col-lg-12">
                <div class="col-md-12">
                    <h2 class="title-3 mt-3">
-                  Status Pengajuan Surat Keterangan Mahasiswa Aktif
+                  Status Pengajuan Surat PKL
                    </h2>
                </div>
                  <div class="table-responsive table--no-card m-b-30">
                    <table class="table table-borderless table-striped table-earning">
                        <thead>
                            <tr>
+                           <th class="text-center">TAHUN AKADEMIK</th>
                                <th class="text-center">NAMA</th>
                                <th class="text-center">NPM</th>
+                               <th class="text-center">NAMA TEMAN</th>
+                               <th class="text-center">NPM TEMAN</th>
                                <th class="text-center">PERUSAHAAN TUJUAN</th>
                                <th class="text-center">ALAMAT PERUSAHAAN</th>
-                               <th class="text-center">NO. TELP</th>
+                               <th class="text-center">NO. INSTANSI</th>
                                <th class="text-center">BAGIAN YANG DITUJU</th>
                                <th class="text-center">TGL. MULAI</th>
                                <th class="text-center">TGL. SELESAI</th>
+                               <th class="text-center">TGL PENGAJUAN</th>
+                                <th class="text-center">TGL SELESAI</th>
                                <th class="text-center">STATUS</th>
                            </tr>
                        </thead>
                        <tbody>
-                          <?php while ($datauser = mysqli_fetch_assoc($queryuser)) { ?>
+                          <?php while ($surat_pkl = mysqli_fetch_assoc($querysurat_pkl)) { ?>
                             <tr>
-                            <?php if ($datauser['poin'] == 1) { ?>
-                              <td class="text-center"><?php echo $datauser["nama"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["npm"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["perusahaan"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["Alamat"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["no"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["bagian"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["mulai"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["selesai"]; ?></td>
+                            <td class="text-center"><?php echo $surat_pkl["tahunakademik"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["nama"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["npm"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["nama_teman"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["npm_teman"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["instansi"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["alamat_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["no_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["divisi_tujuan"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["mulai"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["selesai"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["tgl_pengajuan"]; ?></td>
+                              <td class="text-center"><?php echo $surat_pkl["tgl_selesai"]; ?></td>
                               <td class="text-center">
-                                <button type="button" class="btn btn-success btn-sm">Diterima</button>
-                                <a href="<?php echo "user/nonaktifuser.php?user=".$datauser['npm']; ?>" type="button" class="btn btn-outline-danger btn-sm">Nonaktif</a>
+                              <select>
+                                  <option name="poin" value="0" selected>Diterima</option>
+                                  <option name="poin" value="1">Dalam Proses</option>
+                                  <option name="poin" value="2">Proses Dekan/Wadek</option>
+                                  <option name="poin" value="3">Selesai</option>
+                                  <option name="poin" value="4" >Selesai</option>
+                                </select>
                               </td>
-                            <?php } elseif ($datauser['poin'] == 2) { ?>
-                              <td class="text-center"><?php echo $datauser["nama"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["npm"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["perusahaan"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["Alamat"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["no"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["bagian"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["mulai"]; ?></td>
-                              <td class="text-center"><?php echo $datauser["selesai"]; ?></td>
-                                   <td class="text-center">
-                                     <a href="<?php echo "user/aktifuser.php?user=".$datauser['npm']; ?>" type="button" class="btn btn-outline-success btn-sm">Aktif</a>
-                                     <button type="button" class="btn btn-danger btn-sm">Proses</button>
-                                   </td>
-                                 <?php } elseif ($datauser['poin'] == 3) { ?>
-                                   <td class="text-center"><?php echo $datauser["nama"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["npm"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["perusahaan"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["Alamat"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["no"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["bagian"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["mulai"]; ?></td>
-                                   <td class="text-center"><?php echo $datauser["selesai"]; ?></td>
-                                        <td class="text-center">
-                                          <a href="<?php echo "user/aktifuser.php?user=".$datauser['npm']; ?>" type="button" class="btn btn-outline-success btn-sm">Aktif</a>
-                                          <button type="button" class="btn btn-danger btn-sm">Ditolak</button>
-                                        </td>
-                                      <?php } elseif ($datauser['poin'] == 4) { ?>
-                                        <td class="text-center"><?php echo $datauser["nama"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["npm"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["perusahaan"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["Alamat"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["no"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["bagian"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["mulai"]; ?></td>
-                                        <td class="text-center"><?php echo $datauser["selesai"]; ?></td>
-                                             <td class="text-center">
-                                               <a href="<?php echo "user/aktifuser.php?user=".$datauser['npm']; ?>" type="button" class="btn btn-outline-success btn-sm">Aktif</a>
-                                               <button type="button" class="btn btn-danger btn-sm">Selesai</button>
-                                             </td>
-                                           <?php } ?>
                            </tr>
                          <?php } ?>
                        </tbody>

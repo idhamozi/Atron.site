@@ -210,7 +210,7 @@ if ($npm == 0) {
                                   <?php } ?>
                                 </tr>
                         <?php } ?>
-                              <?php
+                              <?php $no1 = $no;
                                 while ($surat_keluar = mysqli_fetch_assoc($querysurat_keluar)) {?>
                                 <tr>
                                   <?php

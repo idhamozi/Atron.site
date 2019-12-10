@@ -30,7 +30,7 @@ if ($cekuser == 0) {
     }
 
   echo '<script language="javascript">alert("Pengajuan Berhasil !"); document.location="mahasiswa_aktif.php";</script>';
-} elseif ($cekuser > 0 AND $status['poin'] == 3) {
+} elseif ($cekuser > 0 AND $status['poin'] == 3 OR $status['poin'] == 4) {
 
   $sql = "INSERT INTO suket_kuliah (tahunakademik,nama,npm,jurusan,semester,nama_ortu,nip,pangkat,instansi,keperluan,foto_pembayaran,tgl_pengajuan,tgl_selesai) VALUES ('$tahunakademik','$nama','$npm','$jurusan','$semester','$nama_ortu','$nip','$pangkat','$instansi','$keperluan','$foto_pembayaran','$tgl_pengajuan','')";
   $result = mysqli_query($koneksi,$sql);
@@ -39,7 +39,7 @@ if ($cekuser == 0) {
     	}
     else {
     }
-    
+
   echo '<script language="javascript">alert("Pengajuan Berhasil !"); document.location="mahasiswa_aktif.php";</script>';
 } else {
   echo '<script language="javascript">alert("Sudah ada pengajuan yang sedang di proses !"); document.location="mahasiswa_aktif.php";</script>';
