@@ -46,6 +46,12 @@ session_start();
             $data = mysqli_fetch_array($query);
             $querysuket_kuliah = mysqli_query($koneksi, "SELECT * FROM suket_kuliah ");
             $querysuket_kuliah1 = mysqli_query($koneksi, "SELECT * FROM suket_kuliah ");
+            $querysuket_kuliah2 = mysqli_query($koneksi, "SELECT * FROM suket_kuliah ");
+            $tahunakademik1 = date("Y")+1;
+            $tahunakademik = date("Y");
+
+            $akademik = $tahunakademik."/".$tahunakademik1;
+
 
             if ($npm == null){
               header("location:../../index.html");
@@ -83,10 +89,21 @@ session_start();
                                  </a>
                              </li>
                              <li class="has-sub">
-                                 <a href="status-pengajuan_admin.php">
-                                     <i class="fas fa-upload"></i>
-                                     <span class="bot-line"></span>Status Pengajuan
-                                 </a>
+                               <a href="#">
+                                 <i class="fas fa-upload"></i>Status Pengajuan
+                                 <span class="bot-line"></span>
+                               </a>
+                               <ul class="header3-sub-list list-unstyled">
+                                   <li>
+                                       <a href="status_pengajuan_surat_pkl.php">Surat Praktek Kerja Lapangan</a>
+                                   </li>
+                                   <li>
+                                       <a href="status_pengajuan_surat_mahasiswa_aktif.php">Surat Keterangan Mahasiswa Aktif</a>
+                                   </li>
+                                   <li>
+                                       <a href="status_pengajuan_surat_keluar.php">Surat Keluar</a>
+                                   </li>
+                               </ul>
                              </li>
                              <li class="has-sub">
                                  <a href="#">
@@ -231,7 +248,7 @@ session_start();
                      <div class="row">
                          <div class="col-md-12">
                              <h1 class="title-4 mt-4">
-                               Status Pengajuan Surat
+                               Pengajuan Surat Keterangan Mahasiswa Aktif Tahun Akademik <?php echo $akademik; ?>
                              </h1>
                              <hr class="line-seprate">
                          </div>
@@ -245,7 +262,7 @@ session_start();
              <div class="col-lg-12">
                <div class="col-md-12">
                    <h2 class="title-3 mt-3">
-                  Status Pengajuan Surat Keterangan Mahasiswa Aktif
+                  Verifikasi Surat
                    </h2>
                </div>
                <div class="table-responsive table--no-card m-b-30">
@@ -273,7 +290,6 @@ session_start();
                           <a href="<?php echo "suket_terima.php?keperluan=".$suket_kuliah['keperluan']; ?>" type="button" class="btn btn-success btn-sm">Accept</a>
                           <a href="<?php echo "suket_tolak.php?keperluan=".$suket_kuliah['keperluan']; ?>" type="button" class="btn btn-danger btn-sm">Reject</a>
                           </td>
-                             <?php } else { ?>
                              <?php } ?>
                        </tr>
                      <?php } ?>
@@ -281,11 +297,18 @@ session_start();
                </table>
              </div>
          </div>
+
+         <div class="col-lg-12">
+           <div class="col-md-12">
+               <h2 class="title-3 mt-3">
+              Status Dalam Proses
+               </h2>
+           </div>
                  <div class="table-responsive table--no-card m-b-30">
                    <table class="table table-borderless table-striped table-earning">
                        <thead>
                            <tr>
-                           <th class="text-center">TA</th>
+                           <!-- <th class="text-center">TA</th> -->
                                <th class="text-center">NAMA</th>
                                <th class="text-center">NPM</th>
                                <th class="text-center">JURUSAN</th>
@@ -295,10 +318,10 @@ session_start();
                                <th class="text-center">PANGKAT</th>
                                <th class="text-center">INSTANSI</th> -->
                                <th class="text-center">KEPERLUAN</th>
-                               <th class="text-center">FOTO PEMBAYARAN</th>
+                               <!-- <th class="text-center">FOTO PEMBAYARAN</th> -->
                                <th class="text-center">TGL PENGAJUAN</th>
                                <!-- <th class="text-center">TGL SELESAI</th> -->
-                               <th class="text-center">STATUS</th>
+                               <!-- <th class="text-center">STATUS</th> -->
                                <th class="text-center">ACTION</th>
                            </tr>
                        </thead>
@@ -306,7 +329,7 @@ session_start();
                           <?php while ($suket_kuliah1 = mysqli_fetch_assoc($querysuket_kuliah1)) { ?>
                             <tr>
                             <?php if ($suket_kuliah1['poin'] == 1 ) { ?>
-                              <td class="text-center"><?php echo $suket_kuliah1["tahunakademik"]; ?></td>
+                              <!-- <td class="text-center"><?php echo $suket_kuliah1["tahunakademik"]; ?></td> -->
                               <td class="text-center"><?php echo $suket_kuliah1["nama"]; ?></td>
                               <td class="text-center"><?php echo $suket_kuliah1["npm"]; ?></td>
                               <td class="text-center"><?php echo $suket_kuliah1["jurusan"]; ?></td>
@@ -316,62 +339,81 @@ session_start();
                               <td class="text-center"><?php echo $suket_kuliah1["pangkat"]; ?></td>
                               <td class="text-center"><?php echo $suket_kuliah1["instansi"]; ?></td> -->
                               <td class="text-center"><?php echo $suket_kuliah1["keperluan"]; ?></td>
-                              <td class="text-center"><img src="../../images/<?php echo $suket_kuliah1['foto_pembayaran']; ?>"> </td>
+                              <!-- <td class="text-center"><img src="../../images/<?php echo $suket_kuliah1['foto_pembayaran']; ?>"> </td> -->
                               <td class="text-center"><?php echo $suket_kuliah1["tgl_pengajuan"]; ?></td>
                               <!-- <td class="text-center"><?php echo $suket_kuliah1["tgl_selesai"]; ?></td> -->
-                              <td class="text-center"><strong>Dalam Proses</strong></td>
+                              <!-- <td class="text-center"><strong>Dalam Proses</strong></td> -->
                                 <td class="text-center">
                                   <button type="button" class="btn btn-success btn-sm">Dalam Proses</button>
                                   <a href="<?php echo "update_suket_aktif2.php?keperluan=".$suket_kuliah1['keperluan']; ?>" type="button" class="btn btn-outline-success btn-sm">Proses Dekan/Wadek</a>
                                   <a href="<?php echo "update_suket_aktif3.php?keperluan=".$suket_kuliah1['keperluan']; ?>" type="button" class="btn btn-outline-success btn-sm">Siap Diambil</a>
                               </td>
-                            <?php } elseif ($suket_kuliah1['poin'] == 2) { ?>
-                              <td class="text-center"><?php echo $suket_kuliah1["tahunakademik"]; ?></td>
-                              <td class="text-center"><?php echo $suket_kuliah1["nama"]; ?></td>
-                              <td class="text-center"><?php echo $suket_kuliah1["npm"]; ?></td>
-                              <td class="text-center"><?php echo $suket_kuliah1["jurusan"]; ?></td>
-                              <td class="text-center"><?php echo $suket_kuliah1["semester"]; ?></td>
-                              <!-- <td class="text-center"><?php echo $suket_kuliah1["nama_ortu"]; ?></td>
-                              <td class="text-center"><?php echo $suket_kuliah1["nip"]; ?></td>
-                              <td class="text-center"><?php echo $suket_kuliah1["pangkat"]; ?></td>
-                              <td class="text-center"><?php echo $suket_kuliah1["instansi"]; ?></td> -->
-                              <td class="text-center"><?php echo $suket_kuliah1["keperluan"]; ?></td>
-                              <td class="text-center"><img src="../../images/<?php echo $suket_kuliah1['foto_pembayaran']; ?>"> </td>
-                              <td class="text-center"><?php echo $suket_kuliah1["tgl_pengajuan"]; ?></td>
-                              <!-- <td class="text-center"><?php echo $suket_kuliah1["tgl_selesai"]; ?></td> -->
-                              <td class="text-center"><strong>Proses Dekan/Wadek</strong></td>
-                                <td class="text-center">
-                                  <a href="#" type="button" class="btn btn-outline-success btn-sm">Dalam Proses</a>
-                                  <button type="button" class="btn btn-success btn-sm">Proses Dekan/Wadek</button>
-                                  <a href="<?php echo "update_suket_aktif3.php?keperluan=".$suket_kuliah1['keperluan']; ?>" type="button" class="btn btn-outline-success btn-sm">Siap Diambil</a>
-                              </td>
-                           <?php  } elseif ($suket_kuliah1['poin'] == 3) { ?>
-                             <td class="text-center"><?php echo $suket_kuliah1["tahunakademik"]; ?></td>
-                             <td class="text-center"><?php echo $suket_kuliah1["nama"]; ?></td>
-                             <td class="text-center"><?php echo $suket_kuliah1["npm"]; ?></td>
-                             <td class="text-center"><?php echo $suket_kuliah1["jurusan"]; ?></td>
-                             <td class="text-center"><?php echo $suket_kuliah1["semester"]; ?></td>
-                             <!-- <td class="text-center"><?php echo $suket_kuliah1["nama_ortu"]; ?></td>
-                             <td class="text-center"><?php echo $suket_kuliah1["nip"]; ?></td>
-                             <td class="text-center"><?php echo $suket_kuliah1["pangkat"]; ?></td>
-                             <td class="text-center"><?php echo $suket_kuliah1["instansi"]; ?></td> -->
-                             <td class="text-center"><?php echo $suket_kuliah1["keperluan"]; ?></td>
-                             <td class="text-center"><img src="../../images/<?php echo $suket_kuliah1['foto_pembayaran']; ?>"> </td>
-                             <td class="text-center"><?php echo $suket_kuliah1["tgl_pengajuan"]; ?></td>
-                             <!-- <td class="text-center"><?php echo $suket_kuliah1["tgl_selesai"]; ?></td> -->
-                             <td class="text-center"><strong>Siap Diambil</strong></td>
-                               <td class="text-center">
-                                 <a href="#" type="button" class="btn btn-outline-success btn-sm">Dalam Proses</a>
-                                 <a href="#" type="button" class="btn btn-outline-success btn-sm">Proses Dekan/Wadek</a>
-                                 <button type="button" class="btn btn-success btn-sm">Siap Diambil</button>
-                             </td>
-                           <?php } ?>
+                            <?php } ?>
                            </tr>
                          <?php } ?>
                        </tbody>
                    </table>
                  </div>
              </div>
+         </div>
+
+         <div class="col-lg-12">
+           <div class="col-md-12">
+               <h2 class="title-3 mt-3">
+              Status Dalam Proses Dekan/Wadek
+               </h2>
+           </div>
+                 <div class="table-responsive table--no-card m-b-30">
+                   <table class="table table-borderless table-striped table-earning">
+                       <thead>
+                           <tr>
+                           <!-- <th class="text-center">TA</th> -->
+                               <th class="text-center">NAMA</th>
+                               <th class="text-center">NPM</th>
+                               <th class="text-center">JURUSAN</th>
+                               <th class="text-center">SEMESTER</th>
+                               <!-- <th class="text-center">NAMA ORANGTUA</th>
+                               <th class="text-center">NIP</th>
+                               <th class="text-center">PANGKAT</th>
+                               <th class="text-center">INSTANSI</th> -->
+                               <th class="text-center">KEPERLUAN</th>
+                               <!-- <th class="text-center">FOTO PEMBAYARAN</th> -->
+                               <th class="text-center">TGL PENGAJUAN</th>
+                               <!-- <th class="text-center">TGL SELESAI</th> -->
+                               <!-- <th class="text-center">STATUS</th> -->
+                               <th class="text-center">ACTION</th>
+                           </tr>
+                           <tbody>
+                              <?php while ($suket_kuliah2 = mysqli_fetch_assoc($querysuket_kuliah2)) { ?>
+                                <tr>
+                                <?php if ($suket_kuliah2['poin'] == 2) { ?>
+                                  <!-- <td class="text-center"><?php echo $suket_kuliah2["tahunakademik"]; ?></td> -->
+                                  <td class="text-center"><?php echo $suket_kuliah2["nama"]; ?></td>
+                                  <td class="text-center"><?php echo $suket_kuliah2["npm"]; ?></td>
+                                  <td class="text-center"><?php echo $suket_kuliah2["jurusan"]; ?></td>
+                                  <td class="text-center"><?php echo $suket_kuliah2["semester"]; ?></td>
+                                  <!-- <td class="text-center"><?php echo $suket_kuliah2["nama_ortu"]; ?></td>
+                                  <td class="text-center"><?php echo $suket_kuliah2["nip"]; ?></td>
+                                  <td class="text-center"><?php echo $suket_kuliah2["pangkat"]; ?></td>
+                                  <td class="text-center"><?php echo $suket_kuliah2["instansi"]; ?></td> -->
+                                  <td class="text-center"><?php echo $suket_kuliah2["keperluan"]; ?></td>
+                                  <!-- <td class="text-center"><img src="../../images/<?php echo $suket_kuliah2['foto_pembayaran']; ?>"> </td> -->
+                                  <td class="text-center"><?php echo $suket_kuliah2["tgl_pengajuan"]; ?></td>
+                                  <!-- <td class="text-center"><?php echo $suket_kuliah2["tgl_selesai"]; ?></td> -->
+                                  <!-- <td class="text-center"><strong>Proses Dekan/Wadek</strong></td> -->
+                                    <td class="text-center">
+                                      <a href="#" type="button" class="btn btn-outline-success btn-sm">Dalam Proses</a>
+                                      <button type="button" class="btn btn-success btn-sm">Proses Dekan/Wadek</button>
+                                      <a href="<?php echo "update_suket_aktif3.php?keperluan=".$suket_kuliah2['keperluan']; ?>" type="button" class="btn btn-outline-success btn-sm">Siap Diambil</a>
+                                  </td>
+                               <?php } ?>
+                               </tr>
+                             <?php } ?>
+                           </tbody>
+                       </thead>
+                    </table>
+                  </div>
+                </div>
              <!-- TABLE END -->
 
              <!-- COPYRIGHT-->

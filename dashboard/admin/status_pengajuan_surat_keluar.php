@@ -47,6 +47,10 @@ session_start();
             $data = mysqli_fetch_array($query);
             $querysurat_keluar = mysqli_query($koneksi, "SELECT * FROM surat_keluar ");
 
+            $tahunakademik1 = date("Y")+1;
+            $tahunakademik = date("Y");
+
+            $akademik = $tahunakademik."/".$tahunakademik1;
 
             if ($npm == null){
               header("location:../../index.html");
@@ -230,7 +234,7 @@ session_start();
                      <div class="row">
                          <div class="col-md-12">
                              <h1 class="title-4 mt-4">
-                               Status Pengajuan Surat
+                               Pengajuan Surat Keluar Tahun Akademik <?php echo $akademik; ?>
                              </h1>
                              <hr class="line-seprate">
                          </div>
@@ -251,7 +255,7 @@ session_start();
                    <table class="table table-borderless table-striped table-earning">
                        <thead>
                            <tr>
-                           <th class="text-center">TAHUN AKADEMIK</th>
+                           <!-- <th class="text-center">TAHUN AKADEMIK</th> -->
                              <th class="text-center">PERUSAHAAN/INSTANSI</th>
                              <th class="text-center">ALAMAT PERUSAHAAN</th>
                              <th class="text-center">NO. INSTANSI</th>
@@ -260,15 +264,16 @@ session_start();
                              <th class="text-center">NPM</th>
                              <th class="text-center">NAMA TEMAN</th>
                              <th class="text-center">NPM TEMAN</th>
-                             <th class="text-center">TGL PENGAJUAN</th>
-                             <th class="text-center">TGL SELESAI</th>
+                             <!-- <th class="text-center">TGL PENGAJUAN</th> -->
+                             <!-- <th class="text-center">TGL SELESAI</th> -->
                               <th class="text-center">STATUS</th>
                            </tr>
                        </thead>
                        <tbody>
                           <?php while ($surat_keluar = mysqli_fetch_assoc($querysurat_keluar)) { ?>
                             <tr>
-                            <td class="text-center"><?php echo $surat_keluar["tahunakademik"]; ?></td>
+                            <?php if ($surat_keluar['poin'] == 0 ) { ?>
+                            <!-- <td class="text-center"><?php echo $surat_keluar["tahunakademik"]; ?></td> -->
                               <td class="text-center"><?php echo $surat_keluar["instansi"]; ?></td>
                               <td class="text-center"><?php echo $surat_keluar["alamat_ins"]; ?></td>
                               <td class="text-center"><?php echo $surat_keluar["no_ins"]; ?></td>
@@ -277,16 +282,69 @@ session_start();
                               <td class="text-center"><?php echo $surat_keluar["npm"]; ?></td>
                               <td class="text-center"><?php echo $surat_keluar["nama_teman"]; ?></td>
                               <td class="text-center"><?php echo $surat_keluar["npm_teman"]; ?></td>
-                              <td class="text-center"><?php echo $surat_keluar["tgl_pengajuan"]; ?></td>
-                              <td class="text-center"><?php echo $surat_keluar["tgl_selesai"]; ?></td>
-                              <td class="text-center">
-                              <select>
-                                <option name="poin" value="0" selected>Diterima</option>
-                                <option name="poin" value="1">Dalam Proses</option>
-                                <option name="poin" value="2">Proses Dekan/Wadek</option>
-                                <option name="poin" value="3" >Siap Diambil</option>
-                                <option name="poin" value="4" >Ditolak</option>
-                                </select>
+                              <!-- <td class="text-center"><?php echo $surat_keluar["tgl_pengajuan"]; ?></td> -->
+                              <!-- <td class="text-center"><?php echo $surat_keluar["tgl_selesai"]; ?></td> -->
+                              <td class="text-center"><strong>Masuk</strong></td>
+                                <td class="text-center">
+                                <a href="<?php echo "suratkeluar_terima.php?teman=".$surat_keluar['npm_teman']; ?>" type="button" class="btn btn-outline-success btn-sm">Diterima</a>
+                                  <a href="<?php echo "suratkeluar_tolak.php?teman=".$surat_keluar['npm_teman']; ?>" type="button" class="btn btn-outline-success btn-sm">Ditolak</a>
+
+                              </td>
+                            <?php } elseif ($surat_keluar['poin'] == 1) { ?>
+                                <!-- <td class="text-center"><?php echo $surat_keluar["tahunakademik"]; ?></td> -->
+                              <td class="text-center"><?php echo $surat_keluar["instansi"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["alamat_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["no_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["divisi_tujuan"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["nama"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["npm"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["nama_teman"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["npm_teman"]; ?></td>
+                              <!-- <td class="text-center"><?php echo $surat_keluar["tgl_pengajuan"]; ?></td> -->
+                              <!-- <td class="text-center"><?php echo $surat_keluar["tgl_selesai"]; ?></td> -->
+                              <td class="text-center"><strong>Dalam Proses</strong></td>
+                                <td class="text-center">
+                                  <a href="#" type="button" class="btn btn-outline-success btn-sm">Dalam Proses</a>
+                                  <a href="<?php echo "update_suratkeluar2.php?teman=".$surat_keluar['npm_teman']; ?>" type="button" class="btn btn-outline-success btn-sm">Proses Dekan/Wadek</a>
+                                  <a href="<?php echo "update_suratkeluar3.php?teman=".$surat_keluar['npm_teman']; ?>" type="button" class="btn btn-outline-success btn-sm">Siap Diambil</a>
+                              </td>
+                              <?php } elseif ($surat_keluar['poin'] == 2) { ?>
+                                <!-- <td class="text-center"><?php echo $surat_keluar["tahunakademik"]; ?></td> -->
+                              <td class="text-center"><?php echo $surat_keluar["instansi"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["alamat_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["no_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["divisi_tujuan"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["nama"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["npm"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["nama_teman"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["npm_teman"]; ?></td>
+                              <!-- <td class="text-center"><?php echo $surat_keluar["tgl_pengajuan"]; ?></td> -->
+                              <!-- <td class="text-center"><?php echo $surat_keluar["tgl_selesai"]; ?></td> -->
+                              <td class="text-center"><strong>Proses Dekan/Wadek</strong></td>
+                                <td class="text-center">
+                                  <a href="#" type="button" class="btn btn-outline-success btn-sm">Dalam Proses</a>
+                                  <a href="#" type="button" class="btn btn-outline-success btn-sm">Proses Dekan/Wadek</a>
+                                  <a href="<?php echo "update_suratkeluar3.php?teman=".$surat_keluar['npm_teman']; ?>" type="button" class="btn btn-outline-success btn-sm">Siap Diambil</a>
+                              </td>
+                              <?php } elseif ($surat_keluar['poin'] == 3) { ?>
+                                <!-- <td class="text-center"><?php echo $surat_keluar["tahunakademik"]; ?></td> -->
+                              <td class="text-center"><?php echo $surat_keluar["instansi"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["alamat_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["no_ins"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["divisi_tujuan"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["nama"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["npm"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["nama_teman"]; ?></td>
+                              <td class="text-center"><?php echo $surat_keluar["npm_teman"]; ?></td>
+                              <!-- <td class="text-center"><?php echo $surat_keluar["tgl_pengajuan"]; ?></td> -->
+                              <!-- <td class="text-center"><?php echo $surat_keluar["tgl_selesai"]; ?></td> -->
+                              <td class="text-center"><strong>Siap Diambil</strong></td>
+                                <td class="text-center">
+                                  <a href="#" type="button" class="btn btn-outline-success btn-sm">Dalam Proses</a>
+                                  <a href="#" type="button" class="btn btn-outline-success btn-sm">Proses Dekan/Wadek</a>
+                                  <a href="#" type="button" class="btn btn-outline-success btn-sm">Siap Diambil</a>
+                              </td>
+                           <?php } ?>
                            </tr>
                          <?php } ?>
                        </tbody>

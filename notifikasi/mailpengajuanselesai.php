@@ -8,19 +8,34 @@
 // include ('../../koneksi.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  if (isset($_GET['user'])) {
 
     // menampilkan semua error kecuali deprecated dan notice
     error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
     require 'phpmailer/PHPMailerAutoload.php';
 
-    $npm = $_GET['user'];
+    $suket = $_GET['keperluan'];
+    $suratpkl = $_GET['npm_teman'];
+    $suratkeluar = $_GET['teman'];
 
-    $emailuser = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm'");
-    $email = mysqli_fetch_array($emailuser);
 
-    $main_message = __DIR__.'/pesan_terverifikasi.php';
+    if ($suket == $suket) {
+
+      $emailuser = mysqli_query($koneksi, "SELECT * FROM user,suket_kuliah WHERE suket_kuliah.keperluan = '$suket' AND user.npm = suket_kuliah.npm ");
+      $email = mysqli_fetch_array($emailuser);
+    }
+    if ($suratpkl == $suratpkl) {
+
+      $emailuser = mysqli_query($koneksi, "SELECT * FROM user,surat_pkl WHERE surat_pkl.npm_teman = '$suratpkl' AND user.npm = surat_pkl.npm ");
+      $email = mysqli_fetch_array($emailuser);
+    }
+    if ($suratkeluar == $suratkeluar) {
+
+      $emailuser = mysqli_query($koneksi, "SELECT * FROM user,surat_keluar WHERE surat_keluar.npm_teman = '$suratkeluar' AND user.npm = surat_keluar.npm ");
+      $email = mysqli_fetch_array($emailuser);
+    }
+
+    $main_message = __DIR__.'/pesan_siap_diambil.php';
     $message = file_get_contents($main_message);
 
     // membuat obyek phpmailer
@@ -38,16 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // menetapkan prefix ke server
     $mail->SMTPSecure = 'ssl';
 
-    if ($gmail['email'] == $querygmail) {
-
-      // atur Gmail sebagai server SMTP
-      $mail->Host = 'smtp.gmail.com';
-
-    } elseif ($yahoo['email'] == $queryyahoo) {
-
-      // atur Yahoo sebagai server SMTP
-      $mail->Host = 'smtp.mail.yahoo.com';
-    }
+    // atur Gmail sebagai server SMTP
+    $mail->Host = 'smtp.gmail.com';
 
     // atur server SMTP untuk server
     $mail->Port = 465;
@@ -92,7 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $msg = $e->getMessage();
     }
 
-  }
 }
 ?>
 
@@ -103,6 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
-    <!-- <?php echo $msg; ?> -->
+    <?php echo $msg; ?>
   </body>
 </html>

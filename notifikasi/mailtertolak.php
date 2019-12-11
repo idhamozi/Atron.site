@@ -20,12 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $emailuser = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm'");
     $email = mysqli_fetch_array($emailuser);
 
-    // $querygmail = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%gmail%'");
-    // $gmail = mysqli_fetch_array($querygmail);
-    //
-    // $queryyahoo = mysqli_query($koneksi, "SELECT * FROM user WHERE npm = '$npm' AND email LIKE '%yahoo%'");
-    // $yahoo = mysqli_fetch_array($queryyahoo);
-
     $main_message = __DIR__.'/pesan_tertolak.php';
     $message = file_get_contents($main_message);
 

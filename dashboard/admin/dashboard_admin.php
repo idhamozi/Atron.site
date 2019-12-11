@@ -55,6 +55,33 @@ $totalinformatika = mysqli_num_rows($informatika);
 $sifo = mysqli_query($koneksi, "SELECT * FROM user WHERE poin = 1 AND npm LIKE '%082%'");
 $totalsifo = mysqli_num_rows($sifo);
 
+$querysuket_kuliah = mysqli_query($koneksi, "SELECT * FROM suket_kuliah ");
+$query_proses_suket_kuliah = mysqli_query($koneksi, "SELECT * FROM suket_kuliah WHERE poin > 0 AND poin < 3 ");
+$query_selesai_suket_kuliah = mysqli_query($koneksi, "SELECT * FROM suket_kuliah WHERE poin = 3 ");
+$suket_kuliah_proses = mysqli_num_rows($query_proses_suket_kuliah);
+$suket_kuliah_selesai = mysqli_num_rows($query_selesai_suket_kuliah);
+$total_suket_kuliah = mysqli_num_rows($querysuket_kuliah);
+
+
+$querysurat_keluar = mysqli_query($koneksi, "SELECT * FROM surat_keluar ");
+$query_proses_surat_keluar = mysqli_query($koneksi, "SELECT * FROM surat_keluar WHERE poin > 0 AND poin < 3 ");
+$query_selesai_surat_keluar = mysqli_query($koneksi, "SELECT * FROM surat_keluar WHERE poin = 3 ");
+$surat_keluar_proses = mysqli_num_rows($query_proses_surat_keluar);
+$surat_keluar_selesai = mysqli_num_rows($query_selesai_surat_keluar);
+$total_surat_keluar = mysqli_num_rows($querysurat_keluar);
+
+
+$querysurat_pkl = mysqli_query($koneksi, "SELECT * FROM surat_pkl ");
+$query_proses_surat_pkl = mysqli_query($koneksi, "SELECT * FROM surat_pkl WHERE poin > 0 AND poin < 3 ");
+$query_selesai_surat_pkl = mysqli_query($koneksi, "SELECT * FROM surat_pkl WHERE poin = 3 ");
+$surat_pkl_proses = mysqli_num_rows($query_proses_surat_pkl);
+$surat_pkl_selesai = mysqli_num_rows($query_selesai_surat_pkl);
+$total_surat_pkl = mysqli_num_rows($querysurat_pkl);
+
+$proses = $surat_keluar_proses + $surat_pkl_proses + $suket_kuliah_proses;
+$selesai = $surat_keluar_selesai + $surat_pkl_selesai + $suket_kuliah_selesai;
+$total = $total_surat_keluar + $total_suket_kuliah + $total_surat_pkl;
+
 if ($npm == null){
   header("location:../../index.html");
 }
@@ -262,7 +289,7 @@ if ($npm == null){
                           </div>
                           <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--orange">
-                              <h2 class="number">322</h2>
+                              <h2 class="number"><?php echo $total; ?></h2>
                               <span class="desc">total pengajuan</span>
                               <div class="icon">
                                 <i class="zmdi zmdi-upload"></i>
@@ -271,7 +298,7 @@ if ($npm == null){
                           </div>
                           <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--blue">
-                              <h2 class="number">32</h2>
+                              <h2 class="number"><?php echo $proses; ?></h2>
                               <span class="desc">pengajuan dalam proses</span>
                               <div class="icon">
                                 <i class="zmdi zmdi-calendar-note"></i>
@@ -280,7 +307,7 @@ if ($npm == null){
                           </div>
                           <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--red">
-                              <h2 class="number">213</h2>
+                              <h2 class="number"><?php echo $selesai; ?></h2>
                               <span class="desc">pengajuan selesai</span>
                               <div class="icon">
                                 <i class="zmdi zmdi-calendar-check"></i>
@@ -306,8 +333,8 @@ if ($npm == null){
                             <div class="statistic-chart-1">
                               <h3 class="title-3 m-b-30">pengajuan</h3>
                               <div class="statistic-chart-1-note">
-                                <span class="big">592</span>
-                                <span>/ 389 surat selesai</span>
+                                <span class="big"><?php echo $total; ?></span>
+                                <span>/ <?php echo $selesai; ?> surat selesai</span>
                               </div>
                             </div>
                             <!-- END CHART-->
@@ -315,21 +342,21 @@ if ($npm == null){
                           <div class="col-md-6 col-lg-4">
                             <!-- TOP CAMPAIGN-->
                             <div class="top-campaign">
-                              <h3 class="title-3 m-b-30">top pengajuan</h3>
+                              <h3 class="title-3 m-b-30">Jumlah pengajuan</h3>
                               <div class="table-responsive">
                                 <table class="table table-top-campaign">
                                   <tbody>
                                     <tr>
                                       <td>1. Surat Keterangan Mahasiswa Aktif</td>
-                                      <td>322</td>
+                                      <td><?php echo $total_suket_kuliah; ?></td>
                                     </tr>
                                     <tr>
-                                      <td>2. Surat Pengajuan Skripsi</td>
-                                      <td>190</td>
+                                      <td>2. Surat Pengajuan Keluar</td>
+                                      <td><?php echo $total_surat_keluar; ?></td>
                                     </tr>
                                     <tr>
                                       <td>3. Surat Pengajuan PKL</td>
-                                      <td>80</td>
+                                      <td><?php echo $total_surat_pkl; ?></td>
                                     </tr>
                                   </tbody>
                                 </table>
