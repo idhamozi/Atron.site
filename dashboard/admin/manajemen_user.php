@@ -160,7 +160,7 @@ session_start();
                          <li class="has-sub">
                              <a class="js-arrow" href="dashboard_admin.php">
                                  <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                           </li>
+                         </li>
                          <li>
                              <a href="list_user.php">
                                  <i class="fas fa-user-circle"></i>List User</a>
@@ -169,46 +169,57 @@ session_start();
                              <a href="manajemen_user.php">
                                  <i class="fas fa-key"></i>Manajemen User</a>
                          </li>
-                         <li>
-                             <a href="status-pengajuan_admin.php">
-                                 <i class="fas fa-upload"></i>Status Pengajuan</a>
+                         <li class="has-sub">
+                             <a class="js-arrow" href="#">
+                                 <i class="fas fa-copy"></i>Status Pengajuan</a>
+                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                 <li>
+                                     <a href="status_pengajuan_surat_pkl.php">Surat Praktek Kerja Lapangan</a>
+                                 </li>
+                                 <li>
+                                     <a href="status_pengajuan_surat_mahasiswa_aktif.php">Surat Keterangan Mahasiswa Aktif</a>
+                                 </li>
+                                 <li>
+                                     <a href="status_pengajuan_surat_keluar.php">Surat Keluar</a>
+                                 </li>
+                             </ul>
                          </li>
                      </ul>
                  </div>
              </nav>
          </header>
          <div class="sub-header-mobile-2 d-block d-lg-none">
-           <div class="header__tool">
-               <div class="account-wrap">
-                   <div class="account-item account-item--style2 clearfix js-item-menu">
-                       <div class="image">
-                           <img src="../images/icon/profil_unknown.webp" alt="Parlika" />
-                       </div>
-                       <div class="content">
+             <div class="header__tool">
+                 <div class="account-wrap">
+                     <div class="account-item account-item--style2 clearfix js-item-menu">
+                         <div class="image">
+                           <img src="../images/icon/profil_unknown.webp"/>
+                         </div>
+                         <div class="content">
                            <a class="js-acc-btn" href="#"><?php  echo $data['npm']?></a>
-                       </div>
-                       <div class="account-dropdown js-dropdown">
-                           <div class="info clearfix">
-                               <div class="image">
-                                   <a href="#">
+                         </div>
+                         <div class="account-dropdown js-dropdown">
+                             <div class="info clearfix">
+                                 <div class="image">
+                                     <a href="#">
                                        <img src="../images/icon/profil_unknown.webp"/>
-                                   </a>
-                               </div>
-                               <div class="content">
-                                   <h5 class="name">
+                                     </a>
+                                 </div>
+                                 <div class="content">
+                                     <h5 class="name">
                                        <a href="#"><?php  echo $data['npm']?></a>
-                                   </h5>
-                                   <span class="email">-</span>
-                               </div>
-                           </div>
-                           <div class="account-dropdown__footer">
+                                     </h5>
+                                     <span class="email">-</span>
+                                 </div>
+                             </div>
+                             <div class="account-dropdown__footer">
                                <a href="../../logout.php">
-                                   <i class="zmdi zmdi-power"></i>Logout</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
+                                 <i class="zmdi zmdi-power"></i>Logout</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
          </div>
          <!-- END HEADER MOBILE -->
 
