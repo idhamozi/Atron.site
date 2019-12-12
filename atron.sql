@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 07 Des 2019 pada 08.11
+-- Generation Time: 12 Des 2019 pada 16.14
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -42,11 +42,12 @@ INSERT INTO `admin` (`id_admin`, `npm`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pernyataan_kuliah`
+-- Struktur dari tabel `suket_kuliah`
 --
 
-CREATE TABLE `pernyataan_kuliah` (
-  `id_user` int(10) NOT NULL,
+CREATE TABLE `suket_kuliah` (
+  `id_skuliah` int(10) NOT NULL,
+  `tahunakademik` varchar(10) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `npm` varchar(13) NOT NULL,
   `jurusan` varchar(18) NOT NULL,
@@ -55,38 +56,11 @@ CREATE TABLE `pernyataan_kuliah` (
   `nip` varchar(25) NOT NULL,
   `pangkat` varchar(15) NOT NULL,
   `instansi` varchar(50) NOT NULL,
-  `keperluan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pinjam_kelas`
---
-
-CREATE TABLE `pinjam_kelas` (
-  `id_user` int(10) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `ruang` char(3) NOT NULL,
-  `tgl_pinjam` date NOT NULL,
-  `keperluan_pinjam` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pkl`
---
-
-CREATE TABLE `pkl` (
-  `id_user` int(10) NOT NULL,
-  `nama_npm_pkl` varchar(100) NOT NULL,
-  `perusahaan_tujuan` varchar(50) NOT NULL,
-  `Alamat` text NOT NULL,
-  `no` varchar(20) NOT NULL,
-  `bagian` varchar(20) NOT NULL,
-  `mulai` date NOT NULL,
-  `selesai` date NOT NULL
+  `keperluan` text NOT NULL,
+  `foto_pembayaran` varchar(100) NOT NULL,
+  `tgl_pengajuan` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
+  `poin` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -96,14 +70,44 @@ CREATE TABLE `pkl` (
 --
 
 CREATE TABLE `surat_keluar` (
-  `id_user` int(10) NOT NULL,
+  `id_skeluar` int(10) NOT NULL,
+  `tahunakademik` varchar(10) NOT NULL,
   `instansi` varchar(100) NOT NULL,
   `alamat_ins` text NOT NULL,
-  `no` varchar(20) NOT NULL,
+  `no_ins` varchar(20) NOT NULL,
   `divisi_tujuan` varchar(100) NOT NULL,
   `keperluan` text NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `npm` varchar(13) NOT NULL
+  `npm` varchar(13) NOT NULL,
+  `nama_teman` varchar(50) NOT NULL,
+  `npm_teman` varchar(13) NOT NULL,
+  `tgl_pengajuan` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
+  `poin` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `surat_pkl`
+--
+
+CREATE TABLE `surat_pkl` (
+  `id_spkl` int(10) NOT NULL,
+  `tahunakademik` varchar(10) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `npm` varchar(13) NOT NULL,
+  `nama_teman` varchar(50) NOT NULL,
+  `npm_teman` varchar(13) NOT NULL,
+  `instansi` varchar(50) NOT NULL,
+  `alamat_ins` text NOT NULL,
+  `no_ins` varchar(20) NOT NULL,
+  `divisi_tujuan` varchar(20) NOT NULL,
+  `mulai` date NOT NULL,
+  `selesai` date NOT NULL,
+  `tgl_pengajuan` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
+  `poin` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -125,15 +129,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`id_user`, `email`, `npm`, `nama`, `password`, `password_asli`, `foto`, `no`, `poin`) VALUES
-(12, 'muh_idham85@yahoo.com', '17081010044', 'Idham', 'b42c73c7521b8c499f7978034ceb1007', 'idham', '1484544837134.jpg', '089661431824', 1),
-(16, 'rama@gmail.com', '17081010005', 'afaf', '604b5996d9c82f4ab8538f7388096ab9', 'amar001', '053817000_1444657845-surbay.jpg', '089661431824', 2),
-(17, 'king.idham@gmail.com', '17081010055', 'lukman', 'b5bbc8cf472072baffe920e4e28ee29c', 'lukman', 'BALKOT.jpg', '0987678909876', 0);
-
---
 -- Indexes for dumped tables
 --
 
@@ -144,10 +139,32 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
+-- Indexes for table `suket_kuliah`
+--
+ALTER TABLE `suket_kuliah`
+  ADD PRIMARY KEY (`id_skuliah`),
+  ADD KEY `fk` (`npm`);
+
+--
+-- Indexes for table `surat_keluar`
+--
+ALTER TABLE `surat_keluar`
+  ADD PRIMARY KEY (`id_skeluar`),
+  ADD KEY `fk` (`npm`) USING BTREE;
+
+--
+-- Indexes for table `surat_pkl`
+--
+ALTER TABLE `surat_pkl`
+  ADD PRIMARY KEY (`id_spkl`),
+  ADD KEY `npm` (`npm`) USING BTREE;
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `npm` (`npm`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -159,10 +176,47 @@ ALTER TABLE `user`
 ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `suket_kuliah`
+--
+ALTER TABLE `suket_kuliah`
+  MODIFY `id_skuliah` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `surat_keluar`
+--
+ALTER TABLE `surat_keluar`
+  MODIFY `id_skeluar` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `surat_pkl`
+--
+ALTER TABLE `surat_pkl`
+  MODIFY `id_spkl` int(10) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `suket_kuliah`
+--
+ALTER TABLE `suket_kuliah`
+  ADD CONSTRAINT `suket_kuliah_ibfk_1` FOREIGN KEY (`npm`) REFERENCES `user` (`npm`);
+
+--
+-- Ketidakleluasaan untuk tabel `surat_keluar`
+--
+ALTER TABLE `surat_keluar`
+  ADD CONSTRAINT `surat_keluar_ibfk_1` FOREIGN KEY (`npm`) REFERENCES `user` (`npm`);
+
+--
+-- Ketidakleluasaan untuk tabel `surat_pkl`
+--
+ALTER TABLE `surat_pkl`
+  ADD CONSTRAINT `surat_pkl_ibfk_1` FOREIGN KEY (`npm`) REFERENCES `user` (`npm`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
