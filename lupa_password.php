@@ -44,9 +44,9 @@
                       </form>
                   </div>
                 </div>
-            <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-image: url(&quot;assets/img/aldain-austria-316143-unsplash.jpg&quot;);background-size: cover;background-position: center center;">
-                <p class="ml-auto small text-dark mb-2"><em>Photo by ATRON Fasilkom</em><br></p>
-            </div>
+          <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-image: url(&quot;dashboard/images/gedung-fik3.jpg&quot;);background-size: cover;background-position: center center;">
+            <p class="ml-auto small text-white mb-2"><em>Photo by ATRON Fasilkom</em><br></p>
+          </div>
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>

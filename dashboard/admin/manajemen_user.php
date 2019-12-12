@@ -78,7 +78,7 @@ session_start();
                                  </a>
                              </li>
                              <li>
-                                 <a href="Manajemen_user.php">
+                                 <a href="manajemen_user.php">
                                      <i class="fas fa-key"></i>
                                      <span class="bot-line"></span>Manajemen User
                                  </a>
@@ -90,21 +90,15 @@ session_start();
                                </a>
                                <ul class="header3-sub-list list-unstyled">
                                    <li>
-                                       <a href="#">Surat Praktek Kerja Lapangan</a>
+                                       <a href="status_pengajuan_surat_pkl.php">Surat Praktek Kerja Lapangan</a>
                                    </li>
                                    <li>
-                                       <a href="#">Surat Keterangan Mahasiswa Aktif</a>
+                                       <a href="status_pengajuan_surat_mahasiswa_aktif.php">Surat Keterangan Mahasiswa Aktif</a>
                                    </li>
                                    <li>
-                                       <a href="#">Surat Keluar</a>
+                                       <a href="status_pengajuan_surat_keluar.php">Surat Keluar</a>
                                    </li>
                                </ul>
-                             </li>
-                             <li class="has-sub">
-                                 <a href="#">
-                                     <i class="fas fa-check-circle"></i>
-                                     <span class="bot-line"></span>Riwayat Pengajuan
-                                 </a>
                              </li>
                          </ul>
                      </div>
@@ -172,16 +166,12 @@ session_start();
                                  <i class="fas fa-user-circle"></i>List User</a>
                          </li>
                          <li>
-                             <a href="Manajemen_user.php">
+                             <a href="manajemen_user.php">
                                  <i class="fas fa-key"></i>Manajemen User</a>
                          </li>
                          <li>
                              <a href="status-pengajuan_admin.php">
                                  <i class="fas fa-upload"></i>Status Pengajuan</a>
-                         </li>
-                         <li>
-                             <a href="#">
-                                 <i class="fas fa-check-circle"></i>Riwayat Pengajuan</a>
                          </li>
                      </ul>
                  </div>

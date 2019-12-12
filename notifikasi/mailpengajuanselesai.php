@@ -15,21 +15,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     require 'phpmailer/PHPMailerAutoload.php';
 
     $suket = $_GET['keperluan'];
-    $suratpkl = $_GET['npm_teman'];
+    $suratpkl = $_GET['status'];
     $suratkeluar = $_GET['teman'];
 
 
-    if ($suket == $suket) {
+    if (isset($_GET['keperluan'])) {
 
       $emailuser = mysqli_query($koneksi, "SELECT * FROM user,suket_kuliah WHERE suket_kuliah.keperluan = '$suket' AND user.npm = suket_kuliah.npm ");
       $email = mysqli_fetch_array($emailuser);
     }
-    if ($suratpkl == $suratpkl) {
+    if (isset($_GET['status'])) {
 
       $emailuser = mysqli_query($koneksi, "SELECT * FROM user,surat_pkl WHERE surat_pkl.npm_teman = '$suratpkl' AND user.npm = surat_pkl.npm ");
       $email = mysqli_fetch_array($emailuser);
     }
-    if ($suratkeluar == $suratkeluar) {
+    if (isset($_GET['teman'])) {
 
       $emailuser = mysqli_query($koneksi, "SELECT * FROM user,surat_keluar WHERE surat_keluar.npm_teman = '$suratkeluar' AND user.npm = surat_keluar.npm ");
       $email = mysqli_fetch_array($emailuser);
@@ -53,14 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // menetapkan prefix ke server
     $mail->SMTPSecure = 'ssl';
 
-    // atur Gmail sebagai server SMTP
-    $mail->Host = 'smtp.gmail.com';
+    // atur Atron.site sebagai server SMTP
+    $mail->Host = 'mail.atron.site ';
 
     // atur server SMTP untuk server
     $mail->Port = 465;
 
     // alamat gmail kamu
-    $mail->Username = 'king.idham00@gmail.com';
+    $mail->Username = 'admin@atron.site';
 
     // password Anda harus disertakan dalam tanda kutip tunggal
     $mail->Password = '5461213mohammadidhaM';
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $mail->Subject = ' Notifkasi Verifikasi Akun ATRON ';
 
     // alamat email pengirim dan nama
-    $mail->SetFrom('king.idham00@gmail.com', 'Admin ATRON');
+    $mail->SetFrom('admin@atron.site', 'Admin ATRON');
 
     // alamat email penerima
     $mail->AddAddress($email['email']);
