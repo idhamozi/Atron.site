@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $mail->Username = 'king.idham00@gmail.com';
 
     // password Anda harus disertakan dalam tanda kutip tunggal
-    $mail->Password = '5461213mohammadidhaM';
+    $mail->Password = '*****';
 
     // tambahkan subjek
     $mail->Subject = ' Notifkasi Verifikasi Akun ATRON ';
